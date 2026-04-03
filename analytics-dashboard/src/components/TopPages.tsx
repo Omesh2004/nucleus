@@ -107,7 +107,7 @@ function TopPages({ data }: TopPagesProps) {
                       {/* Feature count badge */}
                       {features.length > 0 && (
                         <span className="text-[10px] text-gray-400 hidden sm:inline tabular-nums flex-shrink-0">
-                          {features.length}f
+                          {features.length} features
                         </span>
                       )}
                     </div>

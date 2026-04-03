@@ -16,9 +16,10 @@ const nextConfig: NextConfig = {
       ],
       fallback: [
         {
-          // Proxy /api/* to FastAPI backend as a fallback
-          // This ensures internal routes like /api/auth are NEVER caught
-          source: '/api/:path*',
+          // Proxy /api/* to FastAPI backend EXCEPT /api/auth/* which is NextAuth
+          // Using a negative lookahead-equivalent: match /api/ followed by anything
+          // that does NOT start with "auth"
+          source: '/api/((?!auth/).*)',
           destination: `http://${analyticsApiHost}:8001/:path*`,
         },
       ],

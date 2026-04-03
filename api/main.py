@@ -1293,24 +1293,27 @@ def get_top_pages(tenants: str = Query(..., description="Comma-separated list of
             raw_feature = r['raw_feature']
             cnt = int(r['cnt'])
 
-            # 6. HANDLE NULL PATHS CORRECTLY
-            # For legacy simulated events before path ingestion became standard, 
-            # we must fallback to guessing the physical page to prevent dropping data.
-            if not raw_page or raw_page == "null" or raw_page == "":
-                page = resolve_page(raw_feature)
-                if not page:
-                    page = "/dashboard"
-            else:
-                page = str(raw_page)
-                
-            # If the resolved or database path doesn't strictly match a known real page, fallback to dashboard
-            if page not in KNOWN_PAGES:
-                # Some old paths might be /pro-features, which mapping dictates should be one of the query id params
-                # But typically generic unmapped items like location captured bounce to dashboard
-                page = "/dashboard"
-
-            # 1. & 5. NORMALIZE EVENTS & FIX DUPLICATES
+            # STEP 1: Always normalize the event first — this is the canonical taxonomy form
             feature = normalize_event(raw_feature)
+
+            # STEP 2: Determine the page
+            # Priority: metadata.path from DB > resolve from normalized event > resolve from raw event > /dashboard
+            if raw_page and raw_page not in ("null", "", "None"):
+                page = str(raw_page)
+                # If the stored path is an exact known page, trust it
+                if page not in KNOWN_PAGES:
+                    # Try resolving the normalized feature to get the canonical page
+                    resolved = resolve_page(feature) or resolve_page(raw_feature)
+                    if resolved and resolved in KNOWN_PAGES:
+                        page = resolved
+                    # else keep the DB path as-is (may be an admin page etc.)
+            else:
+                # No path in metadata — resolve from normalized feature taxonomy
+                page = resolve_page(feature) or resolve_page(raw_feature) or "/dashboard"
+                # If resolved page is unknown/generic, fall back to dashboard
+                if page not in KNOWN_PAGES:
+                    page = "/dashboard"
+
 
             if page not in page_data:
                 page_data[page] = {"totalEvents": 0, "features": {}}

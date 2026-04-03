@@ -104,6 +104,10 @@ services:
       - clickhouse
     ports:
       - "8001:8001"
+    volumes:
+      - ./api:/app/api
+      - ./storage:/app/storage
+      - ./core:/app/core
     environment:
       - DEPLOYMENT_MODE=CLOUD
       - CLICKHOUSE_HOST=clickhouse

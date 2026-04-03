@@ -20,14 +20,16 @@ URL_MAP: dict[str, str] = {
     "transactions": "/transactions",
     "payees": "/payees",
     "loans": "/loans",
-    "pro-feature": "/pro-features", # Analytics tracks this as /pro-features typically
+    "lending": "/loans",
+    "pro-feature": "/pro-features",
     "profile": "/profile",
     "admin_loans": "/admin/loans",
     "admin_feature_toggles": "/admin/feature-toggles",
     "admin_simulate": "/admin/simulate",
     "login": "/login",
     "register": "/register",
-    
+    "core": "/dashboard",
+
     # SafexBank additions
     "transfers": "/transfers",
     "approvals": "/approvals",
@@ -58,6 +60,7 @@ FEATURE_PAGE_MAP: dict[str, str] = {
     "payroll_batch_processed":      "/pro-feature?id=bulk-payroll-processing",
     "ai-insights":                  "/pro-feature?id=ai-insights",
     "pro_book_download":            "/pro-feature?id=ai-insights",
+    "pro_book_read":                "/pro-feature?id=ai-insights",
     "kyc_completed":                "/loans",
     "kyc_started":                  "/loans",
     "transfer_funds":               "/accounts",
@@ -127,6 +130,14 @@ FEATURE_DISPLAY_NAMES: dict[str, str] = {
     "profile.page.view": "Profile View",
     "profile.edit_details.success": "Profile Details Edited",
 
+    # Auth
+    "login.page.view": "Login Page",
+    "login.auth.success": "Login Success",
+    "login.auth.error": "Login Error",
+    "register.page.view": "Register Page",
+    "register.auth.success": "Register Success",
+    "register.auth.error": "Register Error",
+
     # Admin
     "admin_loans.page.view": "Admin Loans View",
     "admin_loans.view_details.view": "Admin Loan Details",
@@ -137,13 +148,15 @@ FEATURE_DISPLAY_NAMES: dict[str, str] = {
     "admin_simulate.page.view": "Admin Simulator View",
     "admin_simulate.run_simulation.success": "Simulation Run",
 
-    # Auth
-    "login.page.view": "Login Page",
-    "login.auth.success": "Login Success",
-    "login.auth.error": "Login Error",
-    "register.page.view": "Register Page",
-    "register.auth.success": "Register Success",
-    "register.auth.error": "Register Error",
+    # Additional Explicit Mappings requested by user
+    "loans.kyc.abandoned": "KYC Abandoned (View)",
+    "loans.kyc.completed": "KYC Completed",
+    "loans.kyc.started": "KYC Started",
+    "dashboard.pro_catalog.view": "Pro Unlocked (View)",
+    "dashboard.pro_license.unlocked": "Pro License Unlocked (View)",
+    "dashboard.location.captured": "Location Captured (View)",
+    "dashboard.feature.usage": "Pro Feature Engagement",
+    "dashboard.feature.view": "Feature Catalog View",
 }
 
 # ─────────────────────────────────────────────────────────────────────────────
@@ -161,43 +174,77 @@ def normalize_event(event_name: str) -> str:
         
     e = event_name.lower().strip()
     
-    # 1. Map known duplicates & synonyms
     mapping = {
+        # General Views
         "page_view": "dashboard.page.view",
         "dashboard_view": "dashboard.page.view",
         "view_dashboard": "dashboard.page.view",
-        "accounts_view": "accounts.page.view",
-        "transactions_view": "transactions.page.view",
-        "payees_view": "payees.page.view",
-        "payees": "payees.pay_now.success",
-        "payment_completed": "transactions.pay_now.success",
-        "payment_failed": "transactions.pay_now.failed",
-        "loan_applied": "loans.apply_loan.action",
-        
-        # Ensure free.* mapping aligns exactly to duplicates
-        "free.dashboard.view": "dashboard.page.view",
-        "free.accounts.view": "accounts.page.view",
-        "free.transactions.view": "transactions.page.view",
-        "free.payment.success": "transactions.pay_now.success",
-        "free.auth.login.success": "login.auth.success",
-        
-        # New Raw Simulation Mappings
-        "payroll_batch_processed": "pro-feature.bulk-payroll-processing.pay_all_success",
-        "crypto_trade_execution": "pro-feature.crypto-trading.buy_success",
-        "location_captured": "dashboard.location.captured",
-        "wealth_rebalance": "pro-feature.wealth-management-pro.rebalance_success",
-        "pro_book_download": "pro-feature.ai-insights.read_online",
-        "kyc_completed": "loans.submit_application.success",
-        "kyc_started": "loans.proceed_to_kyc.action",
-        "transfer_funds": "accounts.transfer_money.success",
         "feature_view": "dashboard.feature.view",
         "pro_feature_usage": "dashboard.feature.usage",
-        
-        # Fix missing prefixes
+        "location_captured": "dashboard.location.captured",
+        "free.dashboard.view": "dashboard.page.view",
+
+        # Accounts
+        "accounts_view": "accounts.page.view",
+        "transfer_funds": "accounts.transfer_money.success",
+        "free.accounts.view": "accounts.page.view",
+
+        # Transactions
+        "transactions_view": "transactions.page.view",
+        "payment_completed": "transactions.pay_now.success",
+        "payment_failed": "transactions.pay_now.failed",
+        "free.transactions.view": "transactions.page.view",
+        "free.payment.success": "transactions.pay_now.success",
+
+        # Payees
+        "payees_view": "payees.page.view",
+        "payees": "payees.pay_now.success",
+        "payee_added": "payees.add_payee.success",
+        "free.payees.view": "payees.page.view",
+        "free.payees.search": "payees.search_payee.success",
+        "free.payees.add_success": "payees.add_payee.success",
+        "free.payees.remove": "payees.remove_payee.success",
+        "free.payees.edit": "payees.edit_payee.success",
+
+        # Loans
+        "loan_applied": "loans.apply_loan.action",
+        "loans_page_view": "loans.page.view",
+        "kyc_completed": "loans.kyc.completed",
+        "kyc_started": "loans.kyc.started",
+        "kyc_abandoned": "loans.kyc.abandoned",
+        "free.loan.kyc_started": "loans.kyc.started",
+        "free.loan.kyc_completed": "loans.kyc.completed",
+        "free.loan.kyc_failed": "loans.kyc.abandoned",
+        "lending.loans.viewed": "loans.page.view",
+        "lending.loan.applied": "loans.apply_loan.action",
+        "lending.loan.kyc_completed": "loans.kyc.completed",
+        "lending.loan.kyc_abandoned": "loans.kyc.abandoned",
+
+        # Pro Features
+        "pro.features.view": "dashboard.pro_catalog.view",
+        "pro.features.unlock_success": "dashboard.pro_license.unlocked",
+        "pro.crypto_trade_execution.success": "pro-feature.crypto-trading.buy_success",
+        "pro.crypto_trade_execution.failed": "pro-feature.crypto-trading.buy_error",
+        "pro.wealth_rebalance.success": "pro-feature.wealth-management-pro.rebalance_success",
+        "pro.payroll_batch.success": "pro-feature.bulk-payroll-processing.pay_all_success",
+        "pro.wealth_insights.view": "pro-feature.wealth-management-pro.insights_view",
+        "pro.crypto_portfolio.view": "pro-feature.crypto-trading.page_view",
+        "pro.finance-library.book_access": "pro-feature.ai-insights.read_online",
+
+        # Pro Legacy names
+        "payroll_batch_processed": "pro-feature.bulk-payroll-processing.pay_all_success",
+        "crypto_trade_execution": "pro-feature.crypto-trading.buy_success",
+        "wealth_rebalance": "pro-feature.wealth-management-pro.rebalance_success",
         "crypto-trading": "pro-feature.crypto-trading.page_view",
         "wealth-management-pro": "pro-feature.wealth-management-pro.insights_view",
         "bulk-payroll-processing": "pro-feature.bulk-payroll-processing.page_view",
-        "ai-insights": "pro-feature.ai-insights.read_online"
+        "ai-insights": "pro-feature.ai-insights.read_online",
+        "pro_book_read": "pro-feature.ai-insights.read_online",
+        "pro_book_download": "pro-feature.ai-insights.read_online",
+
+        # Auth
+        "free.auth.login.success": "login.auth.success",
+        "free.auth.register.success": "register.auth.success",
     }
     
     if e in mapping:

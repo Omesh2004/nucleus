@@ -194,7 +194,6 @@ function TopLocations({ data }: TopLocationsProps) {
                 <div className="flex items-center justify-between mb-1.5">
                   <div className="flex items-center gap-2">
                     <span className="text-[13px] font-medium text-gray-700 group-hover:text-blue-600 transition-colors">{item.country}</span>
-                    <ExternalLink className="w-3 h-3 text-gray-300 group-hover:text-blue-400 opacity-0 group-hover:opacity-100 transition-all" />
                   </div>
                   <span className="text-[12px] font-bold text-gray-900 tabular-nums">
                     {item.visits >= 1000 ? `${(item.visits / 1000).toFixed(1)}k` : item.visits}
