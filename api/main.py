@@ -9,7 +9,7 @@ from fastapi.middleware.cors import CORSMiddleware
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 from storage.client import ch_client
-from api.insights import generate_insights, query_ollama
+from api.insights import generate_insights, query_vllm
 from api.page_map import resolve_page, resolve_display_name, normalize_event, canonicalize_event_name, CANONICAL_EVENT_ALIASES, FEATURE_DISPLAY_NAMES
 from core.config import settings
 from core.middleware import require_cloud_mode, require_tenant_access
@@ -304,9 +304,12 @@ app.add_middleware(RBACMiddleware)
 
 from fastapi import WebSocket, WebSocketDisconnect
 from api.websocket_manager import manager, start_websocket_background_tasks
+from api.data_layer import start_data_layer_refresh
 
 @app.on_event("startup")
 async def startup_event():
+    import asyncio
+    asyncio.create_task(start_data_layer_refresh(interval_minutes=30))
     await start_websocket_background_tasks()
 
 @app.websocket("/ws/dashboard/{tenant_id}")
@@ -3232,34 +3235,56 @@ def get_ai_report(
         )
 
         prompt = f"""
-        You are an expert UX Researcher and Strategic Data Analyst for NexaBank.
-        Write a detailed, critical analysis report based on the following raw metrics for tenant '{tenant_id}'.
-        
-        Raw Context Data (Includes Funnels, Retention, Predictive Scores, Locations, and Usage):
-        {context_str}
+You are a **Senior Product Analytics Strategist** writing a premium executive briefing for the banking platform tenant: **{tenant_id}**.
+The time range being analyzed is: **{range}**.
 
-        CRITICAL INSTRUCTIONS: Provide a heavily analytical perspective focusing deeply on **HOW we can improve user interaction** and **HOW we can structurally improve the product** based on the funnel and retention gaps. 
-        IMPORTANT: Emphasize exactly where the user journey usually falls off. Use **bold** and `highlight` text (e.g., <mark>highlighted text</mark> or **bold text**) wherever you feel it is critical to draw the reader's attention to major drop-offs.
-        Use Github-style alert boxes (like `> [!WARNING]` or `> [!NOTE]`) for your most critical findings.
+You have access to the following raw telemetry data:
+{context_str}
 
-        Please structure your Markdown report exactly as follows in these 4 strictly ordered sections:
+CRITICAL FORMATTING RULES:
+- Use rich Markdown: **bold**, `code highlights`, blockquotes, bullet lists, numbered lists, and horizontal rules.
+- Use Markdown tables where numerical comparisons are helpful.
+- Use emoji icons (📊 📉 📈 🚨 ✅ ⚠️ 💡 🎯 🔥 🧪) at section headers and key callouts to make the report visually engaging.
+- Use GitHub-style alert blocks for critical findings: `> [!WARNING]`, `> [!NOTE]`, `> [!TIP]`.
+- Write in a professional but direct tone. Avoid filler. Every sentence must add analytical value.
+- Reference specific numbers from the data (e.g., "drop-off of 43% at KYC step", "only 12 events recorded for AI Advisor").
 
-        ## 1. Executive State of Product Strategy
-        (High-level summary of platform health. Focus purely on *growth* and *retention* patterns identified in the KPIs and Predictive scores.)
+Structure the report in these 6 sections:
 
-        ## 2. Friction Points & Drop-off Telemetry
-        (Hard analysis of funnel data. Emphasize exactly **where** users abandon their journey (e.g. KYC, transfer steps). Discuss what UX factors likely cause this friction.)
+---
 
-        ## 3. Feature Interaction & Stickiness Radar
-        (Evaluation of which features drive retention versus which are ignored based on the predictive adoption scores and activity logs.)
+## 📊 1. Executive Health Scorecard
+Provide a high-level snapshot of platform health. Summarize the most important KPIs (total events, active users, bounce rate, session duration) in a **Markdown table**. Comment on whether the platform is in a growth, plateau, or decline phase. Cite specific numbers.
 
-        ## 4. Proposed Concrete Product Roadmap
-        (Top 3 actionable UI updates, workflow simplifications, or technical features to build next to cure the friction points discovered in Section 2.)
+## 📉 2. Conversion Funnel & Drop-off Analysis
+Deep-dive into the funnel data. Identify the **exact step** where the largest user attrition occurs. Calculate and present the drop-off percentages between each step. Use a table or numbered list. Explain the likely UX causes (e.g., form complexity, unclear CTAs, trust barriers). Highlight the most critical drop-off with a `> [!WARNING]` block.
 
-        Do not include any raw JSON or filler content. Do not output anything outside of the markdown itself.
+## 🔥 3. Feature Engagement & Stickiness Map
+Analyze which features drive repeat usage versus which are underperforming. Reference predictive adoption scores and activity data. Categorize features into:
+- 🟢 **High-stickiness** (strong engagement, growing)
+- 🟡 **At-risk** (declining or stagnant)
+- 🔴 **Low adoption** (underused despite strategic importance)
+
+## 🌍 4. Geographic & Demographic Intelligence
+Analyze the location data to identify which regions contribute most traffic. Comment on expansion opportunities or regions where engagement is disproportionately low. Present a brief table of top regions.
+
+## 🧪 5. Retention & Cohort Patterns
+Evaluate the retention cohort data. Identify whether early-stage retention (Week 1-2) or late-stage retention (Week 4+) is the bigger problem. Suggest specific interventions (onboarding improvements, re-engagement campaigns, feature nudges).
+
+## 🎯 6. Strategic Action Plan (Next 30 Days)
+Provide **5 concrete, prioritized actions** the product team should execute in the next 30 days. Each action should:
+- Reference a specific metric or finding from the sections above
+- Describe the expected impact
+- Be implementable within a sprint cycle
+
+Format each action as a numbered item with a bold title and 1-2 sentence description.
+
+---
+
+Do not include raw JSON. Do not add disclaimers or meta-commentary outside the report. Output ONLY the markdown report.
         """
-        from api.insights import query_ollama
-        llm_response = query_ollama(prompt, timeout_seconds=180, max_tokens=900)
+        from api.insights import query_vllm
+        llm_response = query_vllm(prompt, timeout_seconds=180, max_tokens=1200)
 
         if not llm_response:
             # Graceful fallback when the model is unavailable.
@@ -3279,24 +3304,34 @@ def get_ai_report(
                 session_duration = kpi_lookup.get("avg session duration")
 
             llm_response = f"""
-## 1. Executive State of Product Strategy
-The AI model is temporarily unavailable, so this report is generated from live telemetry summaries for **{tenant_id}** over **{range}**.
+## 📊 1. Executive Health Scorecard
+The AI model is temporarily unavailable. This report is generated from live telemetry summaries for **{tenant_id}** over **{range}**.
 
-- Total events: **{total_events}**
-- Active users: **{active_users}**
-- Bounce rate: **{bounce_rate if bounce_rate is not None else 'n/a'}**
-- Avg session duration: **{session_duration if session_duration is not None else 'n/a'}**
+| Metric | Value |
+|--------|-------|
+| Total Events | **{total_events}** |
+| Active Users | **{active_users}** |
+| Bounce Rate | **{bounce_rate if bounce_rate is not None else 'n/a'}** |
+| Avg Session Duration | **{session_duration if session_duration is not None else 'n/a'}** |
 
-## 2. Friction Points & Drop-off Telemetry
-Current funnel and retention metrics indicate where users stall. Prioritize screens with the steepest conversion drops and validate form complexity, field count, and error messaging there.
+## 📉 2. Conversion Funnel & Drop-off Analysis
+Current funnel metrics indicate where users stall. Prioritize screens with the steepest conversion drops and validate form complexity, field count, and error messaging.
 
-## 3. Feature Interaction & Stickiness Radar
-Feature activity and location distribution suggest where engagement is concentrated. Promote high-utility features earlier in journeys and simplify access to underused but strategic actions.
+## 🔥 3. Feature Engagement & Stickiness Map
+Feature activity suggests where engagement is concentrated. Promote high-utility features earlier in journeys and simplify access to underused but strategic actions.
 
-## 4. Proposed Concrete Product Roadmap
-1. Streamline top drop-off funnel step with fewer required inputs and clearer progress indicators.
-2. Add contextual nudges/tooltips on low-adoption but high-value features.
-3. Introduce follow-up prompts or saved-state recovery for interrupted critical flows.
+## 🌍 4. Geographic & Demographic Intelligence
+Location distribution data is available for regional analysis once AI model reconnects.
+
+## 🧪 5. Retention & Cohort Patterns
+Retention metrics are being tracked. A full cohort analysis will be available when the AI model is restored.
+
+## 🎯 6. Strategic Action Plan (Next 30 Days)
+1. **Streamline top drop-off step** — Reduce required inputs and add clearer progress indicators.
+2. **Add contextual nudges** — Deploy tooltips on low-adoption but high-value features.
+3. **Enable saved-state recovery** — Allow users to resume interrupted critical flows.
+4. **Optimize geographic targeting** — Tailor onboarding flows for top-traffic regions.
+5. **Implement re-engagement triggers** — Target users who drop off at Week 2 with personalized nudges.
 """.strip()
 
         final_report = f"{kpi_cards_html}\n{activity_html}\n{geo_html}\n{divider}\n{llm_response}"
@@ -3359,19 +3394,27 @@ Feature activity and location distribution suggest where engagement is concentra
             pass
 
         fallback_report = f"""
-## 1. Executive State of Product Strategy
-AI report generation is temporarily degraded for **{tenant_id}** over **{range}**. Core telemetry endpoints are available, but narrative synthesis could not complete in time.
+## 📊 1. Executive Health Scorecard
+AI report generation is temporarily degraded for **{tenant_id}** over **{range}**. Core telemetry endpoints are available, but narrative synthesis could not complete.
 
-## 2. Friction Points & Drop-off Telemetry
+## 📉 2. Conversion Funnel & Drop-off Analysis
 Review the funnel stages with the highest drop-off and prioritize form simplification and clearer progression cues.
 
-## 3. Feature Interaction & Stickiness Radar
+## 🔥 3. Feature Engagement & Stickiness Map
 Prioritize high-frequency features in primary navigation and improve discoverability for strategic low-adoption features.
 
-## 4. Proposed Concrete Product Roadmap
-1. Reduce steps on the top drop-off flow.
-2. Add contextual guidance at abandonment points.
-3. Track post-change conversion to validate impact.
+## 🌍 4. Geographic & Demographic Intelligence
+Regional data is being collected. Full geographic analysis will resume when the AI model recovers.
+
+## 🧪 5. Retention & Cohort Patterns
+Cohort retention data is available for review. Focus on Week 1-2 retention to identify early churn patterns.
+
+## 🎯 6. Strategic Action Plan (Next 30 Days)
+1. **Reduce steps on the top drop-off flow** — Simplify the most abandoned conversion step.
+2. **Add contextual guidance at abandonment points** — Deploy inline help where users disengage.
+3. **Track post-change conversion** — Measure impact of recent UX updates.
+4. **Optimize onboarding for top regions** — Tailor flows for highest-traffic geographies.
+5. **Deploy re-engagement campaigns** — Target users who churned in the first 2 weeks.
 """.strip()
 
         return {

@@ -28,6 +28,11 @@ class Settings(BaseSettings):
     CLICKHOUSE_PASSWORD: str = ""
     CLICKHOUSE_DATABASE: str = "feature_intelligence"
     
+    # LLM Settings
+    HF_TOKEN: str = ""
+    VLLM_URL: str = "http://vllm-server:8000/v1"
+    OLLAMA_URL: str = "http://ollama:11434"
+    
     @property
     def is_cloud(self) -> bool:
         return self.DEPLOYMENT_MODE == DeploymentMode.CLOUD

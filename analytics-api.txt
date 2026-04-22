@@ -1,0 +1,274 @@
+analytics-api-1  | INFO:     Will watch for changes in these directories: ['/app']
+analytics-api-1  | INFO:     Uvicorn running on http://0.0.0.0:8001 (Press CTRL+C to quit)
+analytics-api-1  | INFO:     Started reloader process [1] using WatchFiles
+analytics-api-1  | INFO:     Started server process [8]
+analytics-api-1  | INFO:     Waiting for application startup.
+analytics-api-1  | INFO:     Application startup complete.
+analytics-api-1  | Unable connect to "broker:29092": [Errno 111] Connection refused
+analytics-api-1  | Kafka consumer connection failed, retrying... KafkaConnectionError: Unable to bootstrap from [('broker', 29092, <AddressFamily.AF_UNSPEC: 0>)]
+analytics-api-1  | Unexpected Http Driver Exception
+analytics-api-1  | Unclosed AIOKafkaConsumer
+analytics-api-1  | consumer: <aiokafka.consumer.consumer.AIOKafkaConsumer object at 0x7f272b3fb010>
+analytics-api-1  | Unable connect to "broker:29092": [Errno 111] Connection refused
+analytics-api-1  | Kafka consumer connection failed, retrying... KafkaConnectionError: Unable to bootstrap from [('broker', 29092, <AddressFamily.AF_UNSPEC: 0>)]
+analytics-api-1  | Unclosed AIOKafkaConsumer
+analytics-api-1  | consumer: <aiokafka.consumer.consumer.AIOKafkaConsumer object at 0x7f272ab75450>
+analytics-api-1  | Unable connect to "broker:29092": [Errno 111] Connection refused
+analytics-api-1  | Kafka consumer connection failed, retrying... KafkaConnectionError: Unable to bootstrap from [('broker', 29092, <AddressFamily.AF_UNSPEC: 0>)]
+analytics-api-1  | Unclosed AIOKafkaConsumer
+analytics-api-1  | consumer: <aiokafka.consumer.consumer.AIOKafkaConsumer object at 0x7f272b3fb010>
+analytics-api-1  | Unable connect to "broker:29092": [Errno 111] Connection refused
+analytics-api-1  | Kafka consumer connection failed, retrying... KafkaConnectionError: Unable to bootstrap from [('broker', 29092, <AddressFamily.AF_UNSPEC: 0>)]
+analytics-api-1  | Unclosed AIOKafkaConsumer
+analytics-api-1  | consumer: <aiokafka.consumer.consumer.AIOKafkaConsumer object at 0x7f272ad58990>
+analytics-api-1  | INFO:     ('172.19.0.1', 56164) - "WebSocket /ws/dashboard/nexabank" [accepted]
+analytics-api-1  | INFO:     connection closed
+analytics-api-1  | INFO:     ('172.19.0.1', 56174) - "WebSocket /ws/dashboard/nexabank" [accepted]
+analytics-api-1  | INFO:     connection open
+analytics-api-1  | INFO:     ('172.19.0.1', 53360) - "WebSocket /ws/dashboard/nexabank" [accepted]
+analytics-api-1  | INFO:     connection open
+analytics-api-1  | INFO:     ('172.19.0.1', 53376) - "WebSocket /ws/dashboard/nexabank" [accepted]
+analytics-api-1  | INFO:     connection open
+analytics-api-1  | INFO:     connection closed
+analytics-api-1  | INFO:     connection closed
+analytics-api-1  | INFO:     ('172.19.0.1', 53388) - "WebSocket /ws/dashboard/nexabank" [accepted]
+analytics-api-1  | INFO:     connection open
+analytics-api-1  | Starting precomputed data layer refresh task...
+analytics-api-1  | Error refreshing data layer: Error HTTPConnectionPool(host='clickhouse', port=8123): Max retries exceeded with url: /?wait_end_of_query=1 (Caused by NewConnectionError("HTTPConnection(host='clickhouse', port=8123): Failed to establish a new connection: [Errno 111] Connection refused")) executing HTTP request attempt 1 (http://clickhouse:8123)
+analytics-api-1  | INFO:     172.19.0.1:53398 - "OPTIONS /tenants/available?range=7d HTTP/1.1" 200 OK
+analytics-api-1  | INFO:     172.19.0.1:53410 - "OPTIONS /metrics/kpi?tenants=nexabank,safexbank&range=7d HTTP/1.1" 200 OK
+analytics-api-1  | INFO:     172.19.0.1:53422 - "OPTIONS /metrics/secondary_kpi?tenants=nexabank,safexbank&range=7d HTTP/1.1" 200 OK
+analytics-api-1  | INFO:     172.19.0.1:53434 - "OPTIONS /metrics/traffic?tenants=nexabank,safexbank&range=7d HTTP/1.1" 200 OK
+analytics-api-1  | INFO:     172.19.0.1:53444 - "OPTIONS /metrics/feature_usage_series?tenants=nexabank,safexbank&range=7d HTTP/1.1" 200 OK
+analytics-api-1  | INFO:     172.19.0.1:53458 - "OPTIONS /features/usage?tenants=nexabank,safexbank&range=7d HTTP/1.1" 200 OK
+analytics-api-1  | INFO:     172.19.0.1:53470 - "OPTIONS /features/activity?tenants=nexabank,safexbank&range=7d HTTP/1.1" 200 OK
+analytics-api-1  | INFO:     172.19.0.1:53410 - "OPTIONS /tenants?tenants=nexabank,safexbank&range=7d HTTP/1.1" 200 OK
+analytics-api-1  | INFO:     172.19.0.1:53422 - "OPTIONS /metrics/realtime_users?tenants=nexabank,safexbank HTTP/1.1" 200 OK
+analytics-api-1  | INFO:     172.19.0.1:53434 - "OPTIONS /metrics/pages_per_minute?tenants=nexabank,safexbank HTTP/1.1" 200 OK
+analytics-api-1  | INFO:     172.19.0.1:53444 - "OPTIONS /metrics/top_pages?tenants=nexabank,safexbank&range=7d HTTP/1.1" 200 OK
+analytics-api-1  | INFO:     172.19.0.1:53458 - "OPTIONS /metrics/devices?tenants=nexabank,safexbank&range=7d HTTP/1.1" 200 OK
+analytics-api-1  | INFO:     172.19.0.1:53470 - "OPTIONS /metrics/channels?tenants=nexabank,safexbank&range=7d HTTP/1.1" 200 OK
+analytics-api-1  | INFO:     172.19.0.1:53422 - "OPTIONS /audit_logs?tenants=nexabank,safexbank&range=7d HTTP/1.1" 200 OK
+analytics-api-1  | INFO:     172.19.0.1:53434 - "OPTIONS /features/configs?tenants=nexabank,safexbank&range=7d HTTP/1.1" 200 OK
+analytics-api-1  | INFO:     172.19.0.1:53444 - "OPTIONS /metrics/retention?tenants=nexabank,safexbank&range=7d HTTP/1.1" 200 OK
+analytics-api-1  | INFO:     172.19.0.1:53458 - "OPTIONS /insights?tenants=nexabank,safexbank&range=7d HTTP/1.1" 200 OK
+analytics-api-1  | INFO:     172.19.0.1:53470 - "OPTIONS /ai_report?tenants=nexabank,safexbank&range=7d HTTP/1.1" 200 OK
+analytics-api-1  | INFO:     172.19.0.1:53484 - "OPTIONS /locations?tenants=nexabank,safexbank&range=7d HTTP/1.1" 200 OK
+analytics-api-1  | INFO:     172.19.0.1:53422 - "OPTIONS /funnels?tenants=nexabank%2Csafexbank&steps=login.auth.success%2Cdashboard.page.view%2Cloan.kyc_started.success%2Cloan.kyc_completed.success%2Cloan.applied.success%2Ctransaction.pay_now.success&window_minutes=60&range=7d HTTP/1.1" 200 OK
+analytics-api-1  | INFO:     172.19.0.1:53502 - "GET /metrics/feature_usage_series?tenants=nexabank,safexbank&range=7d HTTP/1.1" 200 OK
+analytics-api-1  | INFO:     172.19.0.1:53502 - "GET /features/activity?tenants=nexabank,safexbank&range=7d HTTP/1.1" 200 OK
+analytics-api-1  | INFO:     172.19.0.1:53518 - "GET /features/usage?tenants=nexabank,safexbank&range=7d HTTP/1.1" 200 OK
+analytics-api-1  | INFO:     172.19.0.1:53488 - "GET /metrics/traffic?tenants=nexabank,safexbank&range=7d HTTP/1.1" 200 OK
+analytics-api-1  | INFO:     172.19.0.1:53434 - "GET /tenants/available?range=7d HTTP/1.1" 200 OK
+analytics-api-1  | INFO:     172.19.0.1:53488 - "GET /metrics/pages_per_minute?tenants=nexabank,safexbank HTTP/1.1" 200 OK
+analytics-api-1  | INFO:     172.19.0.1:53434 - "GET /metrics/top_pages?tenants=nexabank,safexbank&range=7d HTTP/1.1" 200 OK
+analytics-api-1  | INFO:     172.19.0.1:53518 - "GET /tenants?tenants=nexabank,safexbank&range=7d HTTP/1.1" 200 OK
+analytics-api-1  | INFO:     172.19.0.1:53502 - "GET /metrics/realtime_users?tenants=nexabank,safexbank HTTP/1.1" 200 OK
+analytics-api-1  | INFO:     172.19.0.1:53488 - "GET /metrics/devices?tenants=nexabank,safexbank&range=7d HTTP/1.1" 200 OK
+analytics-api-1  | INFO:     172.19.0.1:53518 - "GET /audit_logs?tenants=nexabank,safexbank&range=7d HTTP/1.1" 200 OK
+analytics-api-1  | INFO:     172.19.0.1:53502 - "GET /features/configs?tenants=nexabank,safexbank&range=7d HTTP/1.1" 200 OK
+analytics-api-1  | INFO:     172.19.0.1:53434 - "GET /metrics/channels?tenants=nexabank,safexbank&range=7d HTTP/1.1" 200 OK
+analytics-api-1  | INFO:     172.19.0.1:53502 - "GET /ai_report?tenants=nexabank,safexbank&range=7d HTTP/1.1" 200 OK
+analytics-api-1  | INFO:     ('172.19.0.1', 53526) - "WebSocket /ws/dashboard/nexabank" [accepted]
+analytics-api-1  | INFO:     connection open
+analytics-api-1  | INFO:     172.19.0.1:53488 - "GET /metrics/retention?tenants=nexabank,safexbank&range=7d HTTP/1.1" 200 OK
+analytics-api-1  | INFO:     172.19.0.1:53444 - "GET /metrics/kpi?tenants=nexabank,safexbank&range=7d HTTP/1.1" 200 OK
+analytics-api-1  | INFO:     172.19.0.1:53458 - "GET /metrics/secondary_kpi?tenants=nexabank,safexbank&range=7d HTTP/1.1" 200 OK
+analytics-api-1  | INFO:     172.19.0.1:53502 - "GET /funnels?tenants=nexabank%2Csafexbank&steps=login.auth.success%2Cdashboard.page.view%2Cloan.kyc_started.success%2Cloan.kyc_completed.success%2Cloan.applied.success%2Ctransaction.pay_now.success&window_minutes=60&range=7d HTTP/1.1" 200 OK
+analytics-api-1  | INFO:     172.19.0.1:53434 - "GET /locations?tenants=nexabank,safexbank&range=7d HTTP/1.1" 200 OK
+analytics-api-1  | vLLM API Error: <urlopen error [Errno 111] Connection refused>
+analytics-api-1  | Falling back to rule-based insights.
+analytics-api-1  | INFO:     172.19.0.1:53518 - "GET /insights?tenants=nexabank,safexbank&range=7d HTTP/1.1" 200 OK
+analytics-api-1  | INFO:     172.19.0.1:53518 - "OPTIONS /ai_report?tenants=nexabank,safexbank&range=7d&force_refresh=true HTTP/1.1" 200 OK
+analytics-api-1  | INFO:     172.19.0.1:53488 - "GET /features/usage?tenants=nexabank,safexbank&range=7d HTTP/1.1" 200 OK
+analytics-api-1  | INFO:     172.19.0.1:53458 - "GET /metrics/traffic?tenants=nexabank,safexbank&range=7d HTTP/1.1" 200 OK
+analytics-api-1  | INFO:     172.19.0.1:53444 - "GET /metrics/feature_usage_series?tenants=nexabank,safexbank&range=7d HTTP/1.1" 200 OK
+analytics-api-1  | INFO:     172.19.0.1:53488 - "GET /features/activity?tenants=nexabank,safexbank&range=7d HTTP/1.1" 200 OK
+analytics-api-1  | INFO:     172.19.0.1:53458 - "GET /tenants?tenants=nexabank,safexbank&range=7d HTTP/1.1" 200 OK
+analytics-api-1  | INFO:     172.19.0.1:53444 - "GET /metrics/realtime_users?tenants=nexabank,safexbank HTTP/1.1" 200 OK
+analytics-api-1  | INFO:     172.19.0.1:53488 - "GET /metrics/pages_per_minute?tenants=nexabank,safexbank HTTP/1.1" 200 OK
+analytics-api-1  | INFO:     172.19.0.1:53444 - "GET /metrics/devices?tenants=nexabank,safexbank&range=7d HTTP/1.1" 200 OK
+analytics-api-1  | INFO:     172.19.0.1:53458 - "GET /metrics/top_pages?tenants=nexabank,safexbank&range=7d HTTP/1.1" 200 OK
+analytics-api-1  | INFO:     172.19.0.1:53444 - "GET /locations?tenants=nexabank,safexbank&range=7d HTTP/1.1" 200 OK
+analytics-api-1  | INFO:     172.19.0.1:53434 - "GET /metrics/kpi?tenants=nexabank,safexbank&range=7d HTTP/1.1" 200 OK
+analytics-api-1  | INFO:     172.19.0.1:53458 - "GET /audit_logs?tenants=nexabank,safexbank&range=7d HTTP/1.1" 200 OK
+analytics-api-1  | INFO:     172.19.0.1:53488 - "GET /metrics/channels?tenants=nexabank,safexbank&range=7d HTTP/1.1" 200 OK
+analytics-api-1  | INFO:     172.19.0.1:53444 - "GET /features/configs?tenants=nexabank,safexbank&range=7d HTTP/1.1" 200 OK
+analytics-api-1  | INFO:     172.19.0.1:53458 - "GET /funnels?tenants=nexabank%2Csafexbank&steps=login.auth.success%2Cdashboard.page.view%2Cloan.kyc_started.success%2Cloan.kyc_completed.success%2Cloan.applied.success%2Ctransaction.pay_now.success&window_minutes=60&range=7d HTTP/1.1" 200 OK
+analytics-api-1  | INFO:     172.19.0.1:53434 - "GET /metrics/retention?tenants=nexabank,safexbank&range=7d HTTP/1.1" 200 OK
+analytics-api-1  | INFO:     172.19.0.1:53502 - "GET /metrics/secondary_kpi?tenants=nexabank,safexbank&range=7d HTTP/1.1" 200 OK
+analytics-api-1  | Traceback (most recent call last):
+analytics-api-1  |   File "/app/api/main.py", line 3264, in get_ai_report
+analytics-api-1  |     from api.insights import query_ollama
+analytics-api-1  | ImportError: cannot import name 'query_ollama' from 'api.insights' (/app/api/insights.py)
+analytics-api-1  | INFO:     172.19.0.1:53518 - "GET /ai_report?tenants=nexabank,safexbank&range=7d&force_refresh=true HTTP/1.1" 200 OK
+analytics-api-1  | INFO:     172.19.0.1:40280 - "GET /metrics/traffic?tenants=nexabank,safexbank&range=7d HTTP/1.1" 200 OK
+analytics-api-1  | INFO:     172.19.0.1:40280 - "GET /tenants?tenants=nexabank,safexbank&range=7d HTTP/1.1" 200 OK
+analytics-api-1  | INFO:     172.19.0.1:40298 - "GET /features/activity?tenants=nexabank,safexbank&range=7d HTTP/1.1" 200 OK
+analytics-api-1  | INFO:     172.19.0.1:40292 - "GET /features/usage?tenants=nexabank,safexbank&range=7d HTTP/1.1" 200 OK
+analytics-api-1  | INFO:     172.19.0.1:40284 - "GET /metrics/feature_usage_series?tenants=nexabank,safexbank&range=7d HTTP/1.1" 200 OK
+analytics-api-1  | INFO:     172.19.0.1:40280 - "GET /metrics/realtime_users?tenants=nexabank,safexbank HTTP/1.1" 200 OK
+analytics-api-1  | INFO:     172.19.0.1:40298 - "GET /metrics/pages_per_minute?tenants=nexabank,safexbank HTTP/1.1" 200 OK
+analytics-api-1  | INFO:     172.19.0.1:40284 - "GET /metrics/devices?tenants=nexabank,safexbank&range=7d HTTP/1.1" 200 OK
+analytics-api-1  | INFO:     172.19.0.1:40292 - "GET /metrics/top_pages?tenants=nexabank,safexbank&range=7d HTTP/1.1" 200 OK
+analytics-api-1  | INFO:     172.19.0.1:40256 - "GET /metrics/kpi?tenants=nexabank,safexbank&range=7d HTTP/1.1" 200 OK
+analytics-api-1  | INFO:     172.19.0.1:40298 - "GET /locations?tenants=nexabank,safexbank&range=7d HTTP/1.1" 200 OK
+analytics-api-1  | INFO:     172.19.0.1:40284 - "GET /audit_logs?tenants=nexabank,safexbank&range=7d HTTP/1.1" 200 OK
+analytics-api-1  | INFO:     172.19.0.1:40292 - "GET /features/configs?tenants=nexabank,safexbank&range=7d HTTP/1.1" 200 OK
+analytics-api-1  | INFO:     172.19.0.1:40280 - "GET /metrics/channels?tenants=nexabank,safexbank&range=7d HTTP/1.1" 200 OK
+analytics-api-1  | INFO:     172.19.0.1:40266 - "GET /metrics/secondary_kpi?tenants=nexabank,safexbank&range=7d HTTP/1.1" 200 OK
+analytics-api-1  | INFO:     172.19.0.1:40298 - "GET /funnels?tenants=nexabank%2Csafexbank&steps=login.auth.success%2Cdashboard.page.view%2Cloan.kyc_started.success%2Cloan.kyc_completed.success%2Cloan.applied.success%2Ctransaction.pay_now.success&window_minutes=60&range=7d HTTP/1.1" 200 OK
+analytics-api-1  | INFO:     172.19.0.1:40256 - "GET /metrics/retention?tenants=nexabank,safexbank&range=7d HTTP/1.1" 200 OK
+analytics-api-1  | INFO:     172.19.0.1:37190 - "GET /metrics/traffic?tenants=nexabank,safexbank&range=7d HTTP/1.1" 200 OK
+analytics-api-1  | INFO:     172.19.0.1:37208 - "GET /features/usage?tenants=nexabank,safexbank&range=7d HTTP/1.1" 200 OK
+analytics-api-1  | INFO:     172.19.0.1:37194 - "GET /metrics/feature_usage_series?tenants=nexabank,safexbank&range=7d HTTP/1.1" 200 OK
+analytics-api-1  | INFO:     172.19.0.1:37210 - "GET /features/activity?tenants=nexabank,safexbank&range=7d HTTP/1.1" 200 OK
+analytics-api-1  | INFO:     172.19.0.1:37194 - "GET /metrics/pages_per_minute?tenants=nexabank,safexbank HTTP/1.1" 200 OK
+analytics-api-1  | INFO:     172.19.0.1:37208 - "GET /metrics/realtime_users?tenants=nexabank,safexbank HTTP/1.1" 200 OK
+analytics-api-1  | INFO:     172.19.0.1:37190 - "GET /tenants?tenants=nexabank,safexbank&range=7d HTTP/1.1" 200 OK
+analytics-api-1  | INFO:     172.19.0.1:37210 - "GET /metrics/top_pages?tenants=nexabank,safexbank&range=7d HTTP/1.1" 200 OK
+analytics-api-1  | INFO:     172.19.0.1:37194 - "GET /metrics/devices?tenants=nexabank,safexbank&range=7d HTTP/1.1" 200 OK
+analytics-api-1  | INFO:     172.19.0.1:37190 - "GET /locations?tenants=nexabank,safexbank&range=7d HTTP/1.1" 200 OK
+analytics-api-1  | INFO:     172.19.0.1:37210 - "GET /audit_logs?tenants=nexabank,safexbank&range=7d HTTP/1.1" 200 OK
+analytics-api-1  | INFO:     172.19.0.1:37208 - "GET /metrics/channels?tenants=nexabank,safexbank&range=7d HTTP/1.1" 200 OK
+analytics-api-1  | INFO:     172.19.0.1:37194 - "GET /features/configs?tenants=nexabank,safexbank&range=7d HTTP/1.1" 200 OK
+analytics-api-1  | INFO:     172.19.0.1:37178 - "GET /metrics/kpi?tenants=nexabank,safexbank&range=7d HTTP/1.1" 200 OK
+analytics-api-1  | INFO:     172.19.0.1:37190 - "GET /metrics/retention?tenants=nexabank,safexbank&range=7d HTTP/1.1" 200 OK
+analytics-api-1  | INFO:     172.19.0.1:37210 - "GET /funnels?tenants=nexabank%2Csafexbank&steps=login.auth.success%2Cdashboard.page.view%2Cloan.kyc_started.success%2Cloan.kyc_completed.success%2Cloan.applied.success%2Ctransaction.pay_now.success&window_minutes=60&range=7d HTTP/1.1" 200 OK
+analytics-api-1  | INFO:     172.19.0.1:37180 - "GET /metrics/secondary_kpi?tenants=nexabank,safexbank&range=7d HTTP/1.1" 200 OK
+analytics-api-1  | INFO:     172.19.0.1:55008 - "GET /metrics/feature_usage_series?tenants=nexabank,safexbank&range=7d HTTP/1.1" 200 OK
+analytics-api-1  | INFO:     172.19.0.1:55000 - "GET /metrics/traffic?tenants=nexabank,safexbank&range=7d HTTP/1.1" 200 OK
+analytics-api-1  | INFO:     172.19.0.1:55024 - "GET /features/activity?tenants=nexabank,safexbank&range=7d HTTP/1.1" 200 OK
+analytics-api-1  | INFO:     172.19.0.1:55020 - "GET /features/usage?tenants=nexabank,safexbank&range=7d HTTP/1.1" 200 OK
+analytics-api-1  | INFO:     172.19.0.1:55000 - "GET /metrics/realtime_users?tenants=nexabank,safexbank HTTP/1.1" 200 OK
+analytics-api-1  | INFO:     172.19.0.1:55008 - "GET /tenants?tenants=nexabank,safexbank&range=7d HTTP/1.1" 200 OK
+analytics-api-1  | INFO:     172.19.0.1:55024 - "GET /metrics/pages_per_minute?tenants=nexabank,safexbank HTTP/1.1" 200 OK
+analytics-api-1  | INFO:     172.19.0.1:55020 - "GET /metrics/top_pages?tenants=nexabank,safexbank&range=7d HTTP/1.1" 200 OK
+analytics-api-1  | INFO:     172.19.0.1:55000 - "GET /metrics/devices?tenants=nexabank,safexbank&range=7d HTTP/1.1" 200 OK
+analytics-api-1  | INFO:     172.19.0.1:55024 - "GET /locations?tenants=nexabank,safexbank&range=7d HTTP/1.1" 200 OK
+analytics-api-1  | INFO:     172.19.0.1:55020 - "GET /audit_logs?tenants=nexabank,safexbank&range=7d HTTP/1.1" 200 OK
+analytics-api-1  | INFO:     172.19.0.1:55008 - "GET /metrics/channels?tenants=nexabank,safexbank&range=7d HTTP/1.1" 200 OK
+analytics-api-1  | INFO:     172.19.0.1:55000 - "GET /features/configs?tenants=nexabank,safexbank&range=7d HTTP/1.1" 200 OK
+analytics-api-1  | INFO:     172.19.0.1:55020 - "GET /funnels?tenants=nexabank%2Csafexbank&steps=login.auth.success%2Cdashboard.page.view%2Cloan.kyc_started.success%2Cloan.kyc_completed.success%2Cloan.applied.success%2Ctransaction.pay_now.success&window_minutes=60&range=7d HTTP/1.1" 200 OK
+analytics-api-1  | INFO:     172.19.0.1:55024 - "GET /metrics/retention?tenants=nexabank,safexbank&range=7d HTTP/1.1" 200 OK
+analytics-api-1  | INFO:     172.19.0.1:54996 - "GET /metrics/secondary_kpi?tenants=nexabank,safexbank&range=7d HTTP/1.1" 200 OK
+analytics-api-1  | INFO:     172.19.0.1:54992 - "GET /metrics/kpi?tenants=nexabank,safexbank&range=7d HTTP/1.1" 200 OK
+analytics-api-1  | INFO:     172.19.0.1:46174 - "GET /metrics/traffic?tenants=nexabank,safexbank&range=7d HTTP/1.1" 200 OK
+analytics-api-1  | INFO:     172.19.0.1:46180 - "GET /metrics/feature_usage_series?tenants=nexabank,safexbank&range=7d HTTP/1.1" 200 OK
+analytics-api-1  | INFO:     172.19.0.1:46174 - "GET /tenants?tenants=nexabank,safexbank&range=7d HTTP/1.1" 200 OK
+analytics-api-1  | INFO:     172.19.0.1:46180 - "GET /metrics/realtime_users?tenants=nexabank,safexbank HTTP/1.1" 200 OK
+analytics-api-1  | INFO:     172.19.0.1:46186 - "GET /features/usage?tenants=nexabank,safexbank&range=7d HTTP/1.1" 200 OK
+analytics-api-1  | INFO:     172.19.0.1:46194 - "GET /features/activity?tenants=nexabank,safexbank&range=7d HTTP/1.1" 200 OK
+analytics-api-1  | INFO:     172.19.0.1:46174 - "GET /metrics/pages_per_minute?tenants=nexabank,safexbank HTTP/1.1" 200 OK
+analytics-api-1  | INFO:     172.19.0.1:46180 - "GET /metrics/top_pages?tenants=nexabank,safexbank&range=7d HTTP/1.1" 200 OK
+analytics-api-1  | INFO:     172.19.0.1:46186 - "GET /metrics/devices?tenants=nexabank,safexbank&range=7d HTTP/1.1" 200 OK
+analytics-api-1  | INFO:     172.19.0.1:46174 - "GET /locations?tenants=nexabank,safexbank&range=7d HTTP/1.1" 200 OK
+analytics-api-1  | INFO:     172.19.0.1:46180 - "GET /audit_logs?tenants=nexabank,safexbank&range=7d HTTP/1.1" 200 OK
+analytics-api-1  | INFO:     172.19.0.1:46194 - "GET /metrics/channels?tenants=nexabank,safexbank&range=7d HTTP/1.1" 200 OK
+analytics-api-1  | INFO:     172.19.0.1:46186 - "GET /features/configs?tenants=nexabank,safexbank&range=7d HTTP/1.1" 200 OK
+analytics-api-1  | INFO:     172.19.0.1:46168 - "GET /metrics/secondary_kpi?tenants=nexabank,safexbank&range=7d HTTP/1.1" 200 OK
+analytics-api-1  | INFO:     172.19.0.1:46174 - "GET /metrics/retention?tenants=nexabank,safexbank&range=7d HTTP/1.1" 200 OK
+analytics-api-1  | INFO:     172.19.0.1:46160 - "GET /metrics/kpi?tenants=nexabank,safexbank&range=7d HTTP/1.1" 200 OK
+analytics-api-1  | INFO:     172.19.0.1:46180 - "GET /funnels?tenants=nexabank%2Csafexbank&steps=login.auth.success%2Cdashboard.page.view%2Cloan.kyc_started.success%2Cloan.kyc_completed.success%2Cloan.applied.success%2Ctransaction.pay_now.success&window_minutes=60&range=7d HTTP/1.1" 200 OK
+analytics-api-1  | INFO:     172.19.0.1:39700 - "GET /metrics/traffic?tenants=nexabank,safexbank&range=7d HTTP/1.1" 200 OK
+analytics-api-1  | INFO:     172.19.0.1:39714 - "GET /metrics/feature_usage_series?tenants=nexabank,safexbank&range=7d HTTP/1.1" 200 OK
+analytics-api-1  | INFO:     172.19.0.1:39718 - "GET /features/usage?tenants=nexabank,safexbank&range=7d HTTP/1.1" 200 OK
+analytics-api-1  | INFO:     172.19.0.1:39720 - "GET /features/activity?tenants=nexabank,safexbank&range=7d HTTP/1.1" 200 OK
+analytics-api-1  | INFO:     172.19.0.1:39700 - "GET /tenants?tenants=nexabank,safexbank&range=7d HTTP/1.1" 200 OK
+analytics-api-1  | INFO:     172.19.0.1:39718 - "GET /metrics/pages_per_minute?tenants=nexabank,safexbank HTTP/1.1" 200 OK
+analytics-api-1  | INFO:     172.19.0.1:39714 - "GET /metrics/realtime_users?tenants=nexabank,safexbank HTTP/1.1" 200 OK
+analytics-api-1  | INFO:     172.19.0.1:39720 - "GET /metrics/top_pages?tenants=nexabank,safexbank&range=7d HTTP/1.1" 200 OK
+analytics-api-1  | INFO:     172.19.0.1:39700 - "GET /metrics/devices?tenants=nexabank,safexbank&range=7d HTTP/1.1" 200 OK
+analytics-api-1  | INFO:     172.19.0.1:39714 - "GET /locations?tenants=nexabank,safexbank&range=7d HTTP/1.1" 200 OK
+analytics-api-1  | INFO:     172.19.0.1:39720 - "GET /audit_logs?tenants=nexabank,safexbank&range=7d HTTP/1.1" 200 OK
+analytics-api-1  | INFO:     172.19.0.1:39718 - "GET /metrics/channels?tenants=nexabank,safexbank&range=7d HTTP/1.1" 200 OK
+analytics-api-1  | INFO:     172.19.0.1:39700 - "GET /funnels?tenants=nexabank%2Csafexbank&steps=login.auth.success%2Cdashboard.page.view%2Cloan.kyc_started.success%2Cloan.kyc_completed.success%2Cloan.applied.success%2Ctransaction.pay_now.success&window_minutes=60&range=7d HTTP/1.1" 200 OK
+analytics-api-1  | INFO:     172.19.0.1:39714 - "GET /features/configs?tenants=nexabank,safexbank&range=7d HTTP/1.1" 200 OK
+analytics-api-1  | INFO:     172.19.0.1:39682 - "GET /metrics/kpi?tenants=nexabank,safexbank&range=7d HTTP/1.1" 200 OK
+analytics-api-1  | INFO:     172.19.0.1:39696 - "GET /metrics/secondary_kpi?tenants=nexabank,safexbank&range=7d HTTP/1.1" 200 OK
+analytics-api-1  | INFO:     172.19.0.1:39720 - "GET /metrics/retention?tenants=nexabank,safexbank&range=7d HTTP/1.1" 200 OK
+analytics-api-1  | INFO:     172.19.0.1:51650 - "GET /metrics/traffic?tenants=nexabank,safexbank&range=7d HTTP/1.1" 200 OK
+analytics-api-1  | INFO:     172.19.0.1:51656 - "GET /metrics/feature_usage_series?tenants=nexabank,safexbank&range=7d HTTP/1.1" 200 OK
+analytics-api-1  | INFO:     172.19.0.1:51658 - "GET /features/usage?tenants=nexabank,safexbank&range=7d HTTP/1.1" 200 OK
+analytics-api-1  | INFO:     172.19.0.1:51674 - "GET /features/activity?tenants=nexabank,safexbank&range=7d HTTP/1.1" 200 OK
+analytics-api-1  | INFO:     172.19.0.1:51646 - "GET /metrics/kpi?tenants=nexabank,safexbank&range=7d HTTP/1.1" 200 OK
+analytics-api-1  | INFO:     172.19.0.1:51648 - "GET /metrics/secondary_kpi?tenants=nexabank,safexbank&range=7d HTTP/1.1" 200 OK
+analytics-api-1  | INFO:     172.19.0.1:51646 - "GET /tenants?tenants=nexabank,safexbank&range=7d HTTP/1.1" 200 OK
+analytics-api-1  | INFO:     172.19.0.1:51674 - "GET /metrics/realtime_users?tenants=nexabank,safexbank HTTP/1.1" 200 OK
+analytics-api-1  | INFO:     172.19.0.1:51658 - "GET /metrics/pages_per_minute?tenants=nexabank,safexbank HTTP/1.1" 200 OK
+analytics-api-1  | INFO:     172.19.0.1:51656 - "GET /metrics/top_pages?tenants=nexabank,safexbank&range=7d HTTP/1.1" 200 OK
+analytics-api-1  | INFO:     172.19.0.1:51650 - "GET /metrics/devices?tenants=nexabank,safexbank&range=7d HTTP/1.1" 200 OK
+analytics-api-1  | INFO:     172.19.0.1:51674 - "GET /audit_logs?tenants=nexabank,safexbank&range=7d HTTP/1.1" 200 OK
+analytics-api-1  | INFO:     172.19.0.1:51658 - "GET /features/configs?tenants=nexabank,safexbank&range=7d HTTP/1.1" 200 OK
+analytics-api-1  | INFO:     172.19.0.1:51646 - "GET /locations?tenants=nexabank,safexbank&range=7d HTTP/1.1" 200 OK
+analytics-api-1  | INFO:     172.19.0.1:51650 - "GET /funnels?tenants=nexabank%2Csafexbank&steps=login.auth.success%2Cdashboard.page.view%2Cloan.kyc_started.success%2Cloan.kyc_completed.success%2Cloan.applied.success%2Ctransaction.pay_now.success&window_minutes=60&range=7d HTTP/1.1" 200 OK
+analytics-api-1  | INFO:     172.19.0.1:51656 - "GET /metrics/retention?tenants=nexabank,safexbank&range=7d HTTP/1.1" 200 OK
+analytics-api-1  | INFO:     172.19.0.1:51648 - "GET /metrics/channels?tenants=nexabank,safexbank&range=7d HTTP/1.1" 200 OK
+analytics-api-1  | INFO:     172.19.0.1:41972 - "GET /metrics/traffic?tenants=nexabank,safexbank&range=7d HTTP/1.1" 200 OK
+analytics-api-1  | INFO:     172.19.0.1:41986 - "GET /metrics/feature_usage_series?tenants=nexabank,safexbank&range=7d HTTP/1.1" 200 OK
+analytics-api-1  | INFO:     172.19.0.1:41990 - "GET /features/usage?tenants=nexabank,safexbank&range=7d HTTP/1.1" 200 OK
+analytics-api-1  | INFO:     172.19.0.1:42004 - "GET /features/activity?tenants=nexabank,safexbank&range=7d HTTP/1.1" 200 OK
+analytics-api-1  | INFO:     172.19.0.1:41990 - "GET /metrics/pages_per_minute?tenants=nexabank,safexbank HTTP/1.1" 200 OK
+analytics-api-1  | INFO:     172.19.0.1:42004 - "GET /metrics/top_pages?tenants=nexabank,safexbank&range=7d HTTP/1.1" 200 OK
+analytics-api-1  | INFO:     172.19.0.1:41986 - "GET /metrics/realtime_users?tenants=nexabank,safexbank HTTP/1.1" 200 OK
+analytics-api-1  | INFO:     172.19.0.1:41972 - "GET /tenants?tenants=nexabank,safexbank&range=7d HTTP/1.1" 200 OK
+analytics-api-1  | INFO:     172.19.0.1:41990 - "GET /metrics/devices?tenants=nexabank,safexbank&range=7d HTTP/1.1" 200 OK
+analytics-api-1  | INFO:     172.19.0.1:41972 - "GET /audit_logs?tenants=nexabank,safexbank&range=7d HTTP/1.1" 200 OK
+analytics-api-1  | INFO:     172.19.0.1:41986 - "GET /locations?tenants=nexabank,safexbank&range=7d HTTP/1.1" 200 OK
+analytics-api-1  | INFO:     172.19.0.1:42004 - "GET /metrics/channels?tenants=nexabank,safexbank&range=7d HTTP/1.1" 200 OK
+analytics-api-1  | INFO:     172.19.0.1:41990 - "GET /features/configs?tenants=nexabank,safexbank&range=7d HTTP/1.1" 200 OK
+analytics-api-1  | INFO:     172.19.0.1:41986 - "GET /funnels?tenants=nexabank%2Csafexbank&steps=login.auth.success%2Cdashboard.page.view%2Cloan.kyc_started.success%2Cloan.kyc_completed.success%2Cloan.applied.success%2Ctransaction.pay_now.success&window_minutes=60&range=7d HTTP/1.1" 200 OK
+analytics-api-1  | INFO:     172.19.0.1:41972 - "GET /metrics/retention?tenants=nexabank,safexbank&range=7d HTTP/1.1" 200 OK
+analytics-api-1  | INFO:     172.19.0.1:41956 - "GET /metrics/secondary_kpi?tenants=nexabank,safexbank&range=7d HTTP/1.1" 200 OK
+analytics-api-1  | INFO:     172.19.0.1:41950 - "GET /metrics/kpi?tenants=nexabank,safexbank&range=7d HTTP/1.1" 200 OK
+analytics-api-1  | INFO:     172.19.0.1:50298 - "GET /features/usage?tenants=nexabank,safexbank&range=7d HTTP/1.1" 200 OK
+analytics-api-1  | INFO:     172.19.0.1:50284 - "GET /metrics/traffic?tenants=nexabank,safexbank&range=7d HTTP/1.1" 200 OK
+analytics-api-1  | INFO:     172.19.0.1:50296 - "GET /metrics/feature_usage_series?tenants=nexabank,safexbank&range=7d HTTP/1.1" 200 OK
+analytics-api-1  | INFO:     172.19.0.1:50310 - "GET /features/activity?tenants=nexabank,safexbank&range=7d HTTP/1.1" 200 OK
+analytics-api-1  | INFO:     172.19.0.1:50298 - "GET /tenants?tenants=nexabank,safexbank&range=7d HTTP/1.1" 200 OK
+analytics-api-1  | INFO:     172.19.0.1:50284 - "GET /metrics/realtime_users?tenants=nexabank,safexbank HTTP/1.1" 200 OK
+analytics-api-1  | INFO:     172.19.0.1:50310 - "GET /metrics/top_pages?tenants=nexabank,safexbank&range=7d HTTP/1.1" 200 OK
+analytics-api-1  | INFO:     172.19.0.1:50296 - "GET /metrics/pages_per_minute?tenants=nexabank,safexbank HTTP/1.1" 200 OK
+analytics-api-1  | INFO:     172.19.0.1:50298 - "GET /metrics/devices?tenants=nexabank,safexbank&range=7d HTTP/1.1" 200 OK
+analytics-api-1  | INFO:     172.19.0.1:50296 - "GET /metrics/channels?tenants=nexabank,safexbank&range=7d HTTP/1.1" 200 OK
+analytics-api-1  | INFO:     172.19.0.1:50284 - "GET /audit_logs?tenants=nexabank,safexbank&range=7d HTTP/1.1" 200 OK
+analytics-api-1  | INFO:     172.19.0.1:50310 - "GET /locations?tenants=nexabank,safexbank&range=7d HTTP/1.1" 200 OK
+analytics-api-1  | INFO:     172.19.0.1:50298 - "GET /features/configs?tenants=nexabank,safexbank&range=7d HTTP/1.1" 200 OK
+analytics-api-1  | INFO:     172.19.0.1:50276 - "GET /metrics/kpi?tenants=nexabank,safexbank&range=7d HTTP/1.1" 200 OK
+analytics-api-1  | INFO:     172.19.0.1:50310 - "GET /funnels?tenants=nexabank%2Csafexbank&steps=login.auth.success%2Cdashboard.page.view%2Cloan.kyc_started.success%2Cloan.kyc_completed.success%2Cloan.applied.success%2Ctransaction.pay_now.success&window_minutes=60&range=7d HTTP/1.1" 200 OK
+analytics-api-1  | INFO:     172.19.0.1:50296 - "GET /metrics/retention?tenants=nexabank,safexbank&range=7d HTTP/1.1" 200 OK
+analytics-api-1  | INFO:     172.19.0.1:50268 - "GET /metrics/secondary_kpi?tenants=nexabank,safexbank&range=7d HTTP/1.1" 200 OK
+analytics-api-1  | INFO:     172.19.0.1:55060 - "GET /metrics/feature_usage_series?tenants=nexabank,safexbank&range=7d HTTP/1.1" 200 OK
+analytics-api-1  | INFO:     172.19.0.1:55054 - "GET /metrics/traffic?tenants=nexabank,safexbank&range=7d HTTP/1.1" 200 OK
+analytics-api-1  | INFO:     172.19.0.1:55072 - "GET /features/usage?tenants=nexabank,safexbank&range=7d HTTP/1.1" 200 OK
+analytics-api-1  | INFO:     172.19.0.1:55078 - "GET /features/activity?tenants=nexabank,safexbank&range=7d HTTP/1.1" 200 OK
+analytics-api-1  | INFO:     172.19.0.1:55060 - "GET /tenants?tenants=nexabank,safexbank&range=7d HTTP/1.1" 200 OK
+analytics-api-1  | INFO:     172.19.0.1:55054 - "GET /metrics/realtime_users?tenants=nexabank,safexbank HTTP/1.1" 200 OK
+analytics-api-1  | INFO:     172.19.0.1:55072 - "GET /metrics/pages_per_minute?tenants=nexabank,safexbank HTTP/1.1" 200 OK
+analytics-api-1  | INFO:     172.19.0.1:55078 - "GET /metrics/top_pages?tenants=nexabank,safexbank&range=7d HTTP/1.1" 200 OK
+analytics-api-1  | INFO:     172.19.0.1:55054 - "GET /metrics/devices?tenants=nexabank,safexbank&range=7d HTTP/1.1" 200 OK
+analytics-api-1  | INFO:     172.19.0.1:55072 - "GET /locations?tenants=nexabank,safexbank&range=7d HTTP/1.1" 200 OK
+analytics-api-1  | INFO:     172.19.0.1:55078 - "GET /audit_logs?tenants=nexabank,safexbank&range=7d HTTP/1.1" 200 OK
+analytics-api-1  | INFO:     172.19.0.1:55054 - "GET /features/configs?tenants=nexabank,safexbank&range=7d HTTP/1.1" 200 OK
+analytics-api-1  | INFO:     172.19.0.1:55060 - "GET /metrics/channels?tenants=nexabank,safexbank&range=7d HTTP/1.1" 200 OK
+analytics-api-1  | INFO:     172.19.0.1:55072 - "GET /metrics/retention?tenants=nexabank,safexbank&range=7d HTTP/1.1" 200 OK
+analytics-api-1  | INFO:     172.19.0.1:55078 - "GET /funnels?tenants=nexabank%2Csafexbank&steps=login.auth.success%2Cdashboard.page.view%2Cloan.kyc_started.success%2Cloan.kyc_completed.success%2Cloan.applied.success%2Ctransaction.pay_now.success&window_minutes=60&range=7d HTTP/1.1" 200 OK
+analytics-api-1  | INFO:     172.19.0.1:55050 - "GET /metrics/secondary_kpi?tenants=nexabank,safexbank&range=7d HTTP/1.1" 200 OK
+analytics-api-1  | INFO:     172.19.0.1:55044 - "GET /metrics/kpi?tenants=nexabank,safexbank&range=7d HTTP/1.1" 200 OK
+analytics-api-1  | INFO:     172.19.0.1:33652 - "GET /metrics/traffic?tenants=nexabank,safexbank&range=7d HTTP/1.1" 200 OK
+analytics-api-1  | INFO:     172.19.0.1:33664 - "GET /features/activity?tenants=nexabank,safexbank&range=7d HTTP/1.1" 200 OK
+analytics-api-1  | INFO:     172.19.0.1:33660 - "GET /features/usage?tenants=nexabank,safexbank&range=7d HTTP/1.1" 200 OK
+analytics-api-1  | INFO:     172.19.0.1:33658 - "GET /metrics/feature_usage_series?tenants=nexabank,safexbank&range=7d HTTP/1.1" 200 OK
+analytics-api-1  | INFO:     172.19.0.1:33652 - "GET /tenants?tenants=nexabank,safexbank&range=7d HTTP/1.1" 200 OK
+analytics-api-1  | INFO:     172.19.0.1:33664 - "GET /metrics/realtime_users?tenants=nexabank,safexbank HTTP/1.1" 200 OK
+analytics-api-1  | INFO:     172.19.0.1:33660 - "GET /metrics/pages_per_minute?tenants=nexabank,safexbank HTTP/1.1" 200 OK
+analytics-api-1  | INFO:     172.19.0.1:33658 - "GET /metrics/top_pages?tenants=nexabank,safexbank&range=7d HTTP/1.1" 200 OK
+analytics-api-1  | INFO:     172.19.0.1:33652 - "GET /metrics/devices?tenants=nexabank,safexbank&range=7d HTTP/1.1" 200 OK
+analytics-api-1  | INFO:     172.19.0.1:33664 - "GET /metrics/channels?tenants=nexabank,safexbank&range=7d HTTP/1.1" 200 OK
+analytics-api-1  | INFO:     172.19.0.1:33646 - "GET /metrics/secondary_kpi?tenants=nexabank,safexbank&range=7d HTTP/1.1" 200 OK
+analytics-api-1  | INFO:     172.19.0.1:33638 - "GET /metrics/kpi?tenants=nexabank,safexbank&range=7d HTTP/1.1" 200 OK
+analytics-api-1  | INFO:     172.19.0.1:33658 - "GET /audit_logs?tenants=nexabank,safexbank&range=7d HTTP/1.1" 200 OK
+analytics-api-1  | INFO:     172.19.0.1:33660 - "GET /locations?tenants=nexabank,safexbank&range=7d HTTP/1.1" 200 OK
+analytics-api-1  | INFO:     172.19.0.1:33652 - "GET /features/configs?tenants=nexabank,safexbank&range=7d HTTP/1.1" 200 OK
+analytics-api-1  | INFO:     172.19.0.1:33664 - "GET /metrics/retention?tenants=nexabank,safexbank&range=7d HTTP/1.1" 200 OK
+analytics-api-1  | INFO:     172.19.0.1:33646 - "GET /funnels?tenants=nexabank%2Csafexbank&steps=login.auth.success%2Cdashboard.page.view%2Cloan.kyc_started.success%2Cloan.kyc_completed.success%2Cloan.applied.success%2Ctransaction.pay_now.success&window_minutes=60&range=7d HTTP/1.1" 200 OK
